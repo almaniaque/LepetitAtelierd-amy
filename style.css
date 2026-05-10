@@ -45,12 +45,14 @@ article #panier {
     text-align: center;
     border-style: double;
 }
+
 #entete {
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: capitalize;
 }
+
 #navi {
     display: flex;
     justify-content: space-between;
@@ -80,8 +82,6 @@ article #panier {
     
 }
 
-
-
 #Bib {
     
     display: grid;
@@ -110,9 +110,9 @@ article #panier {
 }
 
 #Bib article button {
-width: 8vw;
-    
+    width: 8vw;
 }
+
 #footer {
     display: grid;
     grid-template-columns: 8vw 6vw;
@@ -137,11 +137,10 @@ width: 8vw;
 }
 
 .acceuil {
-    justify-content: center;
+    text-align: center;
     width: 98.2vw;
     height: 80vh;
     border-style: groove;
-
 }
 
 #SelecB p {
@@ -149,6 +148,7 @@ width: 8vw;
     border-radius: 10px;
     padding: 3vh 1vw ;
 }
+
 #SelecB {
     display: flex;
     flex-direction: column;
@@ -157,3 +157,11 @@ width: 8vw;
     width: 15vw;
     height: 100px;
 }
+
+#description {
+    text-align: center;
+    width: 97.95vw;
+    height: 80vh;
+    border-style: groove;
+}
+

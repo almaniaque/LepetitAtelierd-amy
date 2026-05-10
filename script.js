@@ -168,15 +168,36 @@ function creerHome() {
     main.classList.remove("Contact");
 
     let accueil = document.createElement("section");
-    let message = document.createElement("h1")
-    let detail = document.createElement("h3")
+    let message = document.createElement("h1");
+    let detail = document.createElement("h3");
+    let Deroulant = document.createElement("section");
+    let detBouquets = document.createElement("article");
+    let detOurson = document.createElement("article");
+    let detSurMesure = document.createElement("article");
+    let detFondant = document.createElement("article");
+    let detFleur = document.createElement("article");
     
+
+    
+    message.textContent = ("Bienvenue dans le Petit Atelier d'Amy");
+    detail.textContent = ("Ici tout est fait artisanalement, de la bougie au fondant");
+
     accueil.setAttribute("id", "accueil");
+    Deroulant.setAttribute("id", "description")
+
+
+    Deroulant.appendChild(detBouquets);
+    Deroulant.appendChild(detOurson);
+    Deroulant.appendChild(detSurMesure);
+    Deroulant.appendChild(detFondant);
+    Deroulant.appendChild(detFleur);
+
 
 
     main.appendChild(accueil);
     main.appendChild(message);
     main.appendChild(detail);
+    main.appendChild(Deroulant);
 }
 
 function creerBibliotheque(element) {
