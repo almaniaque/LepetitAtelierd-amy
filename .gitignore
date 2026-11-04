@@ -1,0 +1,25 @@
+# Secrets et données personnelles
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.jks
+*.log
+# Dépendances/builds Angular
+**/node_modules/
+**/.angular/
+**/dist/
+**/coverage/
+# Build backend / IDE
+**/target/
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+# OS
+.DS_Store
+Thumbs.db
