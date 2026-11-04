@@ -1,0 +1,15 @@
+# Pour le développement UNIQUEMENT, vers PostgreSQL installé sur ton PC.
+# Aucun accès à Supabase. Le mot de passe reste dans DB_PASSWORD.
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://127.0.0.1:5432/lpada_dev?sslmode=disable}
+    username: ${DB_USER:lpada_app}
+    password: ${DB_PASSWORD}
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false

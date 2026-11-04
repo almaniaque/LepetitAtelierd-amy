@@ -1,0 +1,25 @@
+[Unit]
+Description=Le Petit Atelier d'Amy API Spring Boot
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=lpada
+Group=lpada
+WorkingDirectory=/srv/lpada/current
+Environment=SPRING_PROFILES_ACTIVE=prod
+EnvironmentFile=/etc/lpada/backend.env
+ExecStart=/usr/bin/java -XX:MaxRAMPercentage=60 -jar /srv/lpada/current/backend.jar
+Restart=on-failure
+RestartSec=10
+SuccessExitStatus=143
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/lpada
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

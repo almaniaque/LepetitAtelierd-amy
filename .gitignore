@@ -23,3 +23,9 @@
 # OS
 .DS_Store
 Thumbs.db
+
+# Sauvegardes et identifiants de production
+*.dump
+*.backup
+**/secrets/
+**/private/

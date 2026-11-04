@@ -1,0 +1,16 @@
+# Production VPS : ne JAMAIS revenir automatiquement sur la base locale.
+# DB_URL doit pointer vers 127.0.0.1:5432/lpada_prod sur le VPS.
+# PostgreSQL écoute seulement en local ; la liaison est interne au VPS.
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+server:
+  servlet:
+    session:
+      cookie:
+        secure: true

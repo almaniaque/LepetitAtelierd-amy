@@ -1,12 +1,9 @@
 spring:
   application:
     name: lpada-api
+  profiles:
+    default: local
   datasource:
-    # Supabase: utiliser l'URI JDBC de connexion directe ou du pooler en mode session.
-    # Ne jamais mettre de secrets dans le dépôt / frontend.
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
     hikari:
       maximum-pool-size: ${DB_POOL_SIZE:5}
       minimum-idle: 0
