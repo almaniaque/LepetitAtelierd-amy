@@ -53,15 +53,19 @@ public class ProductImageService {
 
     public ImageData load(String filename) {
 
-        if(!filename.matches("[a-f0-9-]{36}\.(jpg|png|webp)")) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (!filename.matches("[a-f0-9-]{36}\\.(jpg|png|webp)")) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         Path target = directory.resolve(filename).normalize();
 
-        if(!target.startsWith(directory) || !Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (!target.startsWith(directory) || !Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         try {
             byte[] content = Files.readAllBytes(target);
             String extension = detectExtension(content);
 
-            if(extension == null || !filename.endsWith("." + extension)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            if (extension == null || !filename.endsWith("." + extension))
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             String type = extension.equals("jpg") ? "image/jpeg" : "image/" + extension;
 
             return new ImageData(content, MediaType.parseMediaType(type));
