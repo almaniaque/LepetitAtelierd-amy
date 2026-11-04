@@ -1,0 +1,8 @@
+/* Admin · styles de la page */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
+.stats>div{padding:22px;background:var(--pale)}
+.stats small{display:block;color:var(--muted)}
+.stats strong{font:25px var(--font-display)}
+.admin-order{display:grid;grid-template-columns:2fr 1fr 1.5fr 1.5fr;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:13px}
+.admin-form{max-width:650px}
+.admin-form label{display:block}

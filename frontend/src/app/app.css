@@ -1,0 +1,15 @@
+/* En-tête et pied de page, styles isolés du composant racine. */
+.top-note{text-align:center;background:var(--color-rose-strong);color:var(--color-white);font-size:12px;letter-spacing:.8px;padding:9px}
+.site-header{display:flex;align-items:center;justify-content:space-between;gap:22px;padding-block:25px}
+.brand{font-size:17px;letter-spacing:2px;line-height:1.2;max-width:235px}
+.brand em{font-size:30px;letter-spacing:0;display:block;color:var(--color-rose-deep)}
+.mainnav{display:flex;gap:30px;align-items:center;font-size:13px}
+.mainnav a:hover,.foot a:hover{color:var(--color-rose)}
+.cart-link{white-space:nowrap;font-size:13px}
+.cart-link span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--color-blush);margin-left:7px}
+footer{background:var(--color-footer);padding-top:62px}
+.foot{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:60px}
+.foot>div{display:flex;flex-direction:column;align-items:start;gap:11px}
+.foot b{font-weight:600;margin-bottom:8px}
+.foot p,.foot a{font-size:13px;line-height:1.7;color:var(--color-text-soft)}
+.copyright{text-align:center;border-top:1px solid var(--color-border);font-size:11px;margin-top:55px;padding:22px;color:var(--color-muted-soft)}

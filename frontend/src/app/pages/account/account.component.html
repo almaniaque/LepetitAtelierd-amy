@@ -1,0 +1,29 @@
+<main class="container inner account">
+<span class="eyebrow">Votre petit espace</span>
+<h1>Mon <i>compte</i>
+</h1>
+<div *ngIf="!store.user()" class="login-card">
+<h2>{{registration?'Créer un compte':'Bon retour ♡'}}</h2>
+<label *ngIf="registration">Votre nom <input class="form-control" [(ngModel)]="name" autocomplete="name">
+</label>
+<label>Adresse email <input class="form-control" [(ngModel)]="email" type="email" autocomplete="email">
+</label>
+<label>Mot de passe <input class="form-control" [(ngModel)]="password" type="password" [attr.autocomplete]="registration?'new-password':'current-password'">
+</label>
+<p *ngIf="registration" class="hint">12 caractères minimum.</p>
+<button class="btn btn-rose wide" (click)="submit()">{{registration?'Créer mon compte':'Me connecter'}}</button>
+<button class="link-button" (click)="registration=!registration">{{registration?'Déjà un compte ? Connexion':'Pas encore de compte ? Inscription'}}</button>
+<p class="feedback">{{message}}</p>
+</div>
+<div *ngIf="store.user()" class="login-card">
+<h2>Bonjour ♡</h2>
+<p>{{store.user()?.email}}</p>
+<button class="btn btn-outline-secondary" (click)="logout()">Se déconnecter</button>
+<h3>Mes commandes</h3>
+<button class="link-button" (click)="loadOrders()">Actualiser</button>
+<div class="order-entry" *ngFor="let o of orders">
+<b>Commande n°{{o.id}}</b>
+<span>{{o.status}} · {{o.totalCents/100 | currency:'EUR'}} · {{o.paymentStatus}}</span>
+</div>
+</div>
+</main>
