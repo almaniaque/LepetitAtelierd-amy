@@ -1,0 +1,40 @@
+<div class="top-note">Créations artisanales & parfumées · Fait avec amour à Toulouse ♡</div>
+<header class="site-header container">
+<a routerLink="/" class="brand">LE PETIT ATELIER <em>d’Amy</em>
+</a>
+<nav class="mainnav">
+<a routerLink="/">Accueil</a>
+<a routerLink="/boutique">La boutique</a>
+<a routerLink="/mon-compte">Mon compte</a>
+<a routerLink="/administration" [hidden]="store.user()?.role!=='ROLE_ADMIN'">Atelier pro</a>
+</nav>
+<a routerLink="/panier" class="cart-link">Mon panier <span>{{store.cart().length}}</span>
+</a>
+</header>
+<router-outlet/>
+<footer>
+<div class="container foot">
+<div>
+<div class="brand">LE PETIT ATELIER <em>d’Amy</em>
+</div>
+<p>Des créations uniques, préparées à la demande avec douceur.</p>
+<a href="https://www.instagram.com/lepetitatelierd_amy/" target="_blank" rel="noopener noreferrer">Instagram · @lepetitatelierd_amy</a>
+</div>
+<div>
+<b>La boutique</b>
+<a routerLink="/boutique">Toutes les créations</a>
+<a routerLink="/mon-compte">Mon compte</a>
+<a routerLink="/panier">Mon panier</a>
+</div>
+<div>
+<b>Informations</b>
+<a routerLink="/legal/cgv">Conditions générales de vente</a>
+<a routerLink="/legal/cgu">Conditions d’utilisation</a>
+<a routerLink="/legal/mentions">Mentions légales</a>
+<a routerLink="/legal/confidentialite">Confidentialité & RGPD</a>
+<a routerLink="/legal/cookies">Cookies</a>
+<a routerLink="/legal/retractation">Rétractation</a>
+</div>
+</div>
+<div class="copyright">© Le Petit Atelier d’Amy · Chaque création est unique ♡</div>
+</footer>

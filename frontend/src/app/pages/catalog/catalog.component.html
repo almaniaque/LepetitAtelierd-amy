@@ -1,0 +1,53 @@
+<section class="page-head">
+<div class="container">
+<span class="eyebrow">Un univers tendre & parfumé</span>
+<h1>La <i>boutique</i>
+</h1>
+<p>Toutes les créations sont réalisées à la demande. Les couleurs et options proposées varient selon les modèles.</p>
+</div>
+</section>
+<main class="container catalog">
+<div class="filters">
+<button [class.selected]="category()===''" (click)="category.set('')">Tout voir</button>
+<button *ngFor="let c of store.categories()" [class.selected]="category()===c.slug" (click)="category.set(c.slug)">{{c.name}}</button>
+</div>
+<div class="product-grid">
+<article class="product-card" *ngFor="let p of visible()">
+<div class="product-photo">
+<img [src]="previewImage(p)" [alt]="p.name + (selectedColor(p) ? ' — ' + selectedColor(p) : '')" loading="lazy">
+<span>À la demande</span>
+</div>
+<div class="product-info">
+<small>{{p.category.name}}</small>
+<h3>{{p.name}}</h3>
+<p>{{p.description}}</p>
+<b>{{p.priceCents/100 | currency:'EUR'}}</b>
+<div *ngIf="p.options.length">
+<div *ngFor="let kind of kinds(p)">
+<div *ngIf="kind === 'Couleur'; else selectionClassique" class="color-picker">
+<span class="color-picker-title">Couleur <strong>{{selectedColor(p) || 'À choisir'}}</strong>
+</span>
+<div class="color-options" role="group" [attr.aria-label]="'Choisir la couleur pour ' + p.name">
+<button *ngFor="let o of options(p,kind)" type="button" class="color-option" [class.is-selected]="selected(p.id,kind)===o.id" [attr.aria-label]="o.label" [attr.aria-pressed]="selected(p.id,kind)===o.id" [title]="o.label" (click)="setOption(p.id,kind,o.id)">
+<span class="color-dot" [style.background-color]="colorHex(o.label)">
+</span>
+<span class="color-option-name">{{o.label}}</span>
+</button>
+</div>
+</div>
+<ng-template #selectionClassique>
+<label>{{kind}}<select [ngModel]="selected(p.id,kind)" (ngModelChange)="setOption(p.id,kind,$event)">
+<option [ngValue]="null">À choisir</option>
+<option *ngFor="let o of options(p,kind)" [ngValue]="o.id">{{o.label}}{{o.extraCents?' (+'+(o.extraCents/100)+' €)':''}}</option>
+</select>
+</label>
+</ng-template>
+</div>
+</div>
+<button class="btn btn-rose wide" (click)="add(p)">Ajouter au panier ♡</button>
+</div>
+</article>
+</div>
+<p class="empty" *ngIf="!visible().length">Cette catégorie sera enrichie prochainement. Contactez l’atelier pour une demande particulière.</p>
+<p class="feedback">{{message()}}</p>
+</main>

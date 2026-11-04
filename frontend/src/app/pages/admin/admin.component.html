@@ -1,0 +1,67 @@
+<main class="container inner">
+<span class="eyebrow">Gestion de l’atelier</span>
+<h1>Tableau de <i>bord</i>
+</h1>
+<p *ngIf="store.user()?.role!=='ROLE_ADMIN'">Cet espace est réservé à l’administratrice.</p>
+<div *ngIf="store.user()?.role==='ROLE_ADMIN'">
+<div class="stats">
+<div>
+<small>Encaissé</small>
+<strong>{{summary.revenueCents/100 | currency:'EUR'}}</strong>
+</div>
+<div>
+<small>Commandes</small>
+<strong>{{summary.orders}}</strong>
+</div>
+<div>
+<small>En attente</small>
+<strong>{{summary.pending}}</strong>
+</div>
+<div>
+<small>En fabrication</small>
+<strong>{{summary.inProgress}}</strong>
+</div>
+<div>
+<small>Livrées</small>
+<strong>{{summary.delivered}}</strong>
+</div>
+</div>
+<button class="btn btn-rose" (click)="load()">Actualiser</button>
+<h2>Commandes</h2>
+<div class="admin-order" *ngFor="let o of orders">
+<b>n°{{o.id}} · {{o.user?.email}}</b>
+<span>{{o.totalCents/100 | currency:'EUR'}}</span>
+<select class="form-select" [(ngModel)]="o.status" (change)="change(o)">
+<option value="PENDING">En attente</option>
+<option value="ACCEPTED">Acceptée</option>
+<option value="MAKING">En fabrication</option>
+<option value="READY">Terminée</option>
+<option value="DELIVERED">Livrée</option>
+<option value="CANCELLED">Annulée</option>
+</select>
+<select class="form-select" [(ngModel)]="o.paymentStatus" (change)="pay(o)">
+<option value="UNPAID">Non payée</option>
+<option value="PAID">Encaissée</option>
+<option value="REFUNDED">Remboursée</option>
+</select>
+</div>
+<h2>Ajouter une création</h2>
+<div class="admin-form">
+<label>Nom <input class="form-control" [(ngModel)]="newProduct.name">
+</label>
+<label>Catégorie <select class="form-select" [(ngModel)]="newProduct.categoryId">
+<option *ngFor="let c of store.categories()" [ngValue]="c.id">{{c.name}}</option>
+</select>
+</label>
+<label>Prix en centimes <input class="form-control" type="number" [(ngModel)]="newProduct.priceCents">
+</label>
+<label>Description <textarea class="form-control" [(ngModel)]="newProduct.description">
+</textarea>
+</label>
+<label>Chemin photo <input class="form-control" [(ngModel)]="newProduct.imagePath">
+</label>
+<button class="btn btn-rose" (click)="create()">Enregistrer</button>
+<p class="feedback">{{message}}</p>
+</div>
+</div>
+</main>

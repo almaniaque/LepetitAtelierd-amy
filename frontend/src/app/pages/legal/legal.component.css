@@ -1,0 +1,7 @@
+/* Legal · styles de la page */
+.legal{max-width:940px}
+.legal h1{font-size:50px}
+.legal section{margin:30px 0}
+.legal h2{font-size:25px}
+.legal p{line-height:1.9;color:var(--color-text-soft)}
+.legal-warning{background:var(--color-warning-bg);border-left:4px solid var(--color-warning-border);padding:17px;color:var(--color-warning-text)}

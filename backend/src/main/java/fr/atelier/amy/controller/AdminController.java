@@ -87,6 +87,14 @@ public class AdminController {
         option.kind = kind;
         option.label = label;
         option.extraCents = extra;
+        Object imageValue = request.get("imagePath");
+        if (imageValue != null) {
+            String imagePath = String.valueOf(imageValue).trim();
+            if (!imagePath.isEmpty() && (!imagePath.startsWith("/assets/images/") || imagePath.contains("..")
+                    || imagePath.length() > 255))
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Chemin image invalide");
+            option.imagePath = imagePath.isEmpty() ? null : imagePath;
+        }
         p.options.add(option);
         return products.save(p);
     }
