@@ -1,0 +1,261 @@
+.product-editor {
+    max-width: 1250px
+}
+
+.editor-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-bottom: 24px
+}
+
+.editor-heading h1 {
+    margin: 10px 0
+}
+
+.editor-heading p:last-child {
+    color: var(--color-muted);
+    line-height: 1.7
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--color-rose-hover);
+    font-size: 13px
+}
+
+.editor-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+    gap: 22px
+}
+
+.editor-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border-soft);
+    padding: clamp(20px, 3vw, 36px);
+    align-self: start
+}
+
+.editor-card-heading {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 28px
+}
+
+.editor-card-heading h2 {
+    font-size: 30px;
+    margin: 4px 0 0
+}
+
+.editor-step {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    flex: none;
+    border-radius: 50%;
+    background: var(--color-cream);
+    color: var(--color-rose-hover);
+    font-family: var(--font-display);
+    font-size: 18px
+}
+
+.editor-card-heading .eyebrow {
+    margin: 0
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 21px;
+    gap: 7px
+}
+
+.field label {
+    font-size: 13px;
+    color: var(--color-label);
+    font-weight: 600
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: var(--color-paper);
+    font-size: 14px
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    border-color: var(--color-rose-strong);
+    box-shadow: 0 0 0 2px var(--color-blush)
+}
+
+.field small,
+.photo-help {
+    font-size: 12px;
+    color: var(--color-muted);
+    line-height: 1.6
+}
+
+.switch-field {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--color-label);
+    font-size: 13px
+}
+
+.switch-field input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--color-rose-strong)
+}
+
+.photo-dropzone {
+    border: 2px dashed var(--color-border);
+    border-radius: 9px;
+    min-height: 325px;
+    background: var(--color-paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 25px;
+    transition: border-color .15s ease, background-color .15s ease
+}
+
+.photo-dropzone.dragging {
+    background: var(--color-cream);
+    border-color: var(--color-rose-strong)
+}
+
+.drop-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-blush);
+    display: grid;
+    place-items: center;
+    font-size: 33px;
+    color: var(--color-rose-hover)
+}
+
+.photo-dropzone strong {
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 400
+}
+
+.photo-dropzone p {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin: 0
+}
+
+.choose-file {
+    border: 1px solid var(--color-rose-strong);
+    background: var(--color-white);
+    color: var(--color-rose-hover);
+    padding: 11px 18px;
+    border-radius: 4px;
+    font-size: 13px
+}
+
+.choose-file:hover {
+    background: var(--color-cream)
+}
+
+.photo-preview {
+    max-width: 100%;
+    width: min(100%, 310px);
+    height: 230px;
+    object-fit: contain;
+    border-radius: 5px
+}
+
+.photo-help {
+    margin: 15px 0
+}
+
+.photo-message {
+    font-size: 13px;
+    margin: 8px 0
+}
+
+.photo-message.success {
+    color: #497c52
+}
+
+.photo-message.error {
+    color: #a33b3b
+}
+
+.editor-tip {
+    padding: 18px;
+    background: var(--color-cream);
+    margin-top: 24px;
+    border-left: 3px solid var(--color-rose-strong)
+}
+
+.editor-tip strong {
+    font-size: 13px
+}
+
+.editor-tip p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--color-muted);
+    margin: 7px 0 0
+}
+
+.editor-actions {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 20px 0
+}
+
+.editor-actions>p:first-child {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin: 0
+}
+
+.save-feedback {
+    width: 100%;
+    color: var(--color-rose-hover);
+    font-size: 13px;
+    margin: 0
+}
+
+.admin-alert {
+    padding: 14px;
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-rose-strong)
+}
+
+@media(max-width:800px) {
+    .editor-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:550px) {
+    .editor-actions .btn {
+        width: 100%
+    }
+}

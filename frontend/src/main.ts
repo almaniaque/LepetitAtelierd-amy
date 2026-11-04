@@ -1,1 +1,15 @@
-import { bootstrapApplication } from '@angular/platform-browser';import { provideHttpClient,withInterceptors } from '@angular/common/http';import { provideRouter } from '@angular/router';import { AppComponent } from './app/app';import { routes } from './app/routes';import { csrfInterceptor } from './app/security';bootstrapApplication(AppComponent,{providers:[provideHttpClient(withInterceptors([csrfInterceptor])),provideRouter(routes)]}).catch(console.error);
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { AppComponent } from './app/app';
+import { routes } from './app/routes';
+import { csrfInterceptor } from './app/security';
+
+bootstrapApplication(
+    AppComponent, {
+    providers: [
+        provideHttpClient(withInterceptors([csrfInterceptor])),
+        provideRouter(routes)
+    ]
+
+}).catch(console.error);

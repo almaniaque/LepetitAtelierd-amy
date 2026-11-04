@@ -1,8 +1,45 @@
-/* Admin · styles de la page */
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px}
-.stats>div{padding:22px;background:var(--pale)}
-.stats small{display:block;color:var(--muted)}
-.stats strong{font:25px var(--font-display)}
-.admin-order{display:grid;grid-template-columns:2fr 1fr 1.5fr 1.5fr;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:13px}
-.admin-form{max-width:650px}
-.admin-form label{display:block}
+.admin-dashboard {
+    max-width: 1300px
+}
+
+.dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px
+}
+
+.dashboard-heading h1 {
+    margin: 9px 0 10px
+}
+
+.dashboard-subtitle {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.7
+}
+
+.dashboard-create {
+    white-space: nowrap;
+    text-decoration: none
+}
+
+.admin-alert {
+    padding: 14px;
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-rose-strong);
+    color: var(--color-ink)
+}
+
+@media(max-width:650px) {
+    .dashboard-heading {
+        align-items: flex-start
+    }
+
+    .dashboard-create {
+        width: 100%;
+        text-align: center
+    }
+}

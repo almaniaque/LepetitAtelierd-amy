@@ -1,29 +1,76 @@
-<main class="container inner account">
-<span class="eyebrow">Votre petit espace</span>
-<h1>Mon <i>compte</i>
-</h1>
-<div *ngIf="!store.user()" class="login-card">
-<h2>{{registration?'Créer un compte':'Bon retour ♡'}}</h2>
-<label *ngIf="registration">Votre nom <input class="form-control" [(ngModel)]="name" autocomplete="name">
-</label>
-<label>Adresse email <input class="form-control" [(ngModel)]="email" type="email" autocomplete="email">
-</label>
-<label>Mot de passe <input class="form-control" [(ngModel)]="password" type="password" [attr.autocomplete]="registration?'new-password':'current-password'">
-</label>
-<p *ngIf="registration" class="hint">12 caractères minimum.</p>
-<button class="btn btn-rose wide" (click)="submit()">{{registration?'Créer mon compte':'Me connecter'}}</button>
-<button class="link-button" (click)="registration=!registration">{{registration?'Déjà un compte ? Connexion':'Pas encore de compte ? Inscription'}}</button>
-<p class="feedback">{{message}}</p>
-</div>
-<div *ngIf="store.user()" class="login-card">
-<h2>Bonjour ♡</h2>
-<p>{{store.user()?.email}}</p>
-<button class="btn btn-outline-secondary" (click)="logout()">Se déconnecter</button>
-<h3>Mes commandes</h3>
-<button class="link-button" (click)="loadOrders()">Actualiser</button>
-<div class="order-entry" *ngFor="let o of orders">
-<b>Commande n°{{o.id}}</b>
-<span>{{o.status}} · {{o.totalCents/100 | currency:'EUR'}} · {{o.paymentStatus}}</span>
-</div>
-</div>
+<main class="account-page">
+  <div class="container account-layout">
+    <header class="account-heading">
+      <span class="eyebrow">Votre petit espace</span>
+      <h1>Mon <i>compte</i></h1>
+      <p>Un espace rien qu'à vous, pour retrouver vos jolies créations et suivre vos commandes.</p>
+    </header>
+
+    <section class="account-panel" aria-labelledby="account-panel-title">
+      <div class="account-panel__ornament" aria-hidden="true">♡</div>
+
+      <ng-container *ngIf="!store.user(); else connectedAccount">
+        <header class="account-panel__header">
+          <span class="account-panel__kicker">Le petit atelier d'Amy</span>
+          <h2 id="account-panel-title">{{ registration ? 'Rejoignez notre univers' : 'Bon retour parmi nous' }} <span aria-hidden="true">♡</span></h2>
+          <p>{{ registration ? 'Créez votre espace personnel pour retrouver toutes vos commandes.' : 'Connectez-vous pour retrouver vos commandes et vos créations préférées.' }}</p>
+        </header>
+
+        <form class="account-form" (ngSubmit)="submit()" autocomplete="on">
+          <div class="account-form__field" *ngIf="registration">
+            <label for="account-name">Votre nom</label>
+            <input id="account-name" class="form-control" name="name" [(ngModel)]="name" autocomplete="name" required />
+          </div>
+
+          <div class="account-form__field">
+            <label for="account-email">Adresse e-mail</label>
+            <input id="account-email" class="form-control" name="email" [(ngModel)]="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required />
+          </div>
+
+          <div class="account-form__field">
+            <label for="account-password">Mot de passe</label>
+            <input id="account-password" class="form-control" name="password" [(ngModel)]="password" type="password" [attr.autocomplete]="registration ? 'new-password' : 'current-password'" [attr.minlength]="registration ? 12 : null" required />
+            <p *ngIf="registration" class="account-form__hint">12 caractères minimum pour protéger votre compte.</p>
+          </div>
+
+          <button type="submit" class="btn btn-rose account-form__submit">
+            {{ registration ? 'Créer mon compte' : 'Me connecter' }}
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <div class="account-panel__switch">
+          <span>{{ registration ? 'Vous avez déjà un compte ?' : 'Vous découvrez notre atelier ?' }}</span>
+          <button type="button" class="link-button" (click)="registration = !registration; message = ''">
+            {{ registration ? 'Se connecter' : 'Créer un compte' }}
+          </button>
+        </div>
+        <p *ngIf="message" class="account-feedback" role="status" aria-live="polite">{{ message }}</p>
+      </ng-container>
+
+      <ng-template #connectedAccount>
+        <header class="account-panel__header">
+          <span class="account-panel__kicker">Votre espace personnel</span>
+          <h2 id="account-panel-title">Bonjour <span aria-hidden="true">♡</span></h2>
+          <p>Ravi de vous retrouver à l'atelier.</p>
+          <p class="account-panel__email">{{ store.user()?.email }}</p>
+        </header>
+
+        <section class="account-orders" aria-labelledby="account-orders-title">
+          <div class="account-orders__heading">
+            <h3 id="account-orders-title">Mes commandes</h3>
+            <button type="button" class="link-button" (click)="loadOrders()">Actualiser</button>
+          </div>
+          <article class="order-entry" *ngFor="let o of orders">
+            <strong>Commande n°{{ o.id }}</strong>
+            <span>{{ o.status }} · {{ o.totalCents / 100 | currency:'EUR' }} · {{ o.paymentStatus }}</span>
+          </article>
+          <p class="account-orders__empty" *ngIf="!orders.length">Vos commandes apparaîtront ici.</p>
+        </section>
+        <button type="button" class="account-logout" (click)="logout()">Se déconnecter</button>
+      </ng-template>
+    </section>
+
+    <p class="account-reassurance">Une création à la fois, avec douceur et attention <span aria-hidden="true">♡</span></p>
+  </div>
 </main>

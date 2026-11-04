@@ -1,0 +1,79 @@
+<main class="container product-editor inner">
+  <header class="editor-heading">
+    <div>
+      <p class="eyebrow">Gestion du catalogue</p>
+      <h1>Nouvelle <i>création</i></h1>
+      <p>Ajoutez les informations de la création, puis glissez sa photographie dans la zone prévue.</p>
+    </div><a routerLink="/administration" class="back-link">← Retour au tableau de bord</a>
+  </header>
+  <p class="admin-alert" *ngIf="store.user()?.role!=='ROLE_ADMIN'" role="alert">Cet espace est réservé à
+    l’administratrice. <a routerLink="/mon-compte">Se connecter</a></p>
+  <ng-container *ngIf="store.user()?.role==='ROLE_ADMIN'">
+    <app-admin-navigation />
+    <form #productForm="ngForm" class="editor-grid" (ngSubmit)="save(productForm)">
+      <section class="editor-card" aria-labelledby="details-title">
+        <header class="editor-card-heading"><span class="editor-step">01</span>
+          <div>
+            <p class="eyebrow">Informations</p>
+            <h2 id="details-title">Votre création</h2>
+          </div>
+        </header>
+        <div class="field"><label for="product-name">Nom du produit <span aria-hidden="true">*</span></label><input
+            class="form-control" id="product-name" name="name" [(ngModel)]="product.name" required maxlength="150"
+            placeholder="Ex. Ourson parfumé à la rose"></div>
+        <div class="field"><label for="product-category">Catégorie <span aria-hidden="true">*</span></label><select
+            class="form-select" id="product-category" name="categoryId" [(ngModel)]="product.categoryId" required>
+            <option [ngValue]="null" disabled>Choisir une catégorie</option>
+            <option *ngFor="let category of store.categories()" [ngValue]="category.id">{{category.name}}</option>
+          </select></div>
+        <div class="field"><label for="product-price">Prix en euros <span aria-hidden="true">*</span></label><input
+            class="form-control" id="product-price" name="price" type="number" [ngModel]="product.priceCents/100"
+            (ngModelChange)="setPrice($event)" required min="0" step="0.01" placeholder="12,00"><small>Le prix est
+            converti en centimes avant l’enregistrement.</small></div>
+        <div class="field"><label for="product-description">Description</label><textarea class="form-control"
+            id="product-description" name="description" [(ngModel)]="product.description" rows="6"
+            placeholder="Décrivez les matières, le parfum, l'occasion…"></textarea></div>
+        <label class="switch-field"><input type="checkbox" name="active" [(ngModel)]="product.active"><span>Visible dans
+            la boutique dès l’enregistrement</span></label>
+      </section>
+      <section class="editor-card editor-media" aria-labelledby="photo-title">
+        <header class="editor-card-heading"><span class="editor-step">02</span>
+          <div>
+            <p class="eyebrow">Photographie</p>
+            <h2 id="photo-title">Une belle image</h2>
+          </div>
+        </header>
+        <div class="photo-dropzone" [class.dragging]="dragOver" (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+          <input #photoInput type="file" id="photo-file" class="visually-hidden"
+            accept="image/jpeg,image/png,image/webp" (change)="onFileChange($event)" aria-describedby="photo-help">
+          <ng-container *ngIf="previewUrl;else emptyPhoto"><img class="photo-preview" [src]="previewUrl"
+              alt="Aperçu de la photographie sélectionnée"></ng-container>
+          <ng-template #emptyPhoto>
+            <div class="drop-icon" aria-hidden="true">↥</div><strong>Glissez votre photo ici</strong>
+            <p>ou choisissez-la depuis votre ordinateur</p>
+          </ng-template>
+          <button type="button" class="choose-file" [disabled]="uploading"
+            (click)="photoInput.click()">{{previewUrl?'Changer la photographie':'Choisir une photo'}}</button>
+        </div>
+        <p id="photo-help" class="photo-help">Formats acceptés : JPG, PNG, WebP · 5 Mo maximum. La photo est stockée sur
+          le serveur, pas dans le projet Angular.</p>
+        <p class="photo-message" *ngIf="uploading" role="status">Envoi de la photo en cours…</p>
+        <p class="photo-message success" *ngIf="product.imagePath&&!uploading" role="status">✓ Photo enregistrée, prête
+          pour la boutique.</p>
+        <p class="photo-message error" *ngIf="uploadError" role="alert">{{uploadError}}</p>
+        <aside class="editor-tip"><strong>Le conseil de l’atelier</strong>
+          <p>Privilégiez une photo lumineuse, nette et cadrée sur la création. Une photo carrée fonctionne
+            particulièrement bien dans le catalogue.</p>
+        </aside>
+      </section>
+      <footer class="editor-actions">
+        <p>Les créations sont réalisées à la demande : aucun stock n’est nécessaire.</p><button type="submit"
+          class="btn btn-rose"
+          [disabled]="saving||uploading||!product.imagePath||productForm.invalid">{{saving?'Enregistrement…':'Publier
+          cette création ♡'}}</button>
+        <p class="save-feedback" role="status" aria-live="polite">{{message}}</p>
+      </footer>
+    </form>
+  </ng-container>
+</main>

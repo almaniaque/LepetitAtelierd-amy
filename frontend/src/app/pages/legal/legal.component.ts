@@ -9,7 +9,11 @@ import { legal } from '../../core/data/legal.data';
     styleUrl: './legal.component.css'
 })
 export class LegalComponent {
+
     private route = inject(ActivatedRoute);
-    get doc() { return legal[this.route.snapshot.paramMap.get('page') || 'mentions']; }
+
+    get doc() {
+        return legal[this.route.snapshot.paramMap.get('page') || 'mentions'];
+    }
 }
 

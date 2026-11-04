@@ -1,38 +1,58 @@
-<main class="container inner">
-<span class="eyebrow">Vos jolies trouvailles</span>
-<h1>Mon <i>panier</i>
-</h1>
-<div *ngIf="!store.cart().length" class="empty">
-<p>Votre panier attend ses premières créations ♡</p>
-<a class="btn btn-rose" routerLink="/boutique">Parcourir la boutique</a>
-</div>
-<div *ngIf="store.cart().length" class="checkout-grid">
-<div>
-<div class="cart-item" *ngFor="let l of store.cart();index as i">
-<img [src]="lineImage(l.options,l.product.imagePath)" [alt]="l.product.name">
-<div>
-<h3>{{l.product.name}}</h3>
-<p>{{labels(l.options)}}</p>
-<b>{{(l.product.priceCents+extra(l.options))/100 | currency:'EUR'}}</b>
-</div>
-<button (click)="store.remove(i)" aria-label="Retirer">×</button>
-</div>
-</div>
-<div class="summary">
-<h3>Votre demande</h3>
-<div class="sum-line">
-<span>Total estimé</span>
-<b>{{store.total()/100 | currency:'EUR'}}</b>
-</div>
-<p>Créations fabriquées sur demande. La confirmation du prix, de la disponibilité des options et des modalités de remise intervient après échange avec l’atelier.</p>
-<label>Message pour Amy <textarea class="form-control" [(ngModel)]="note" placeholder="Couleurs, occasion, souhaits particuliers…">
-</textarea>
-</label>
-<label class="check">
-<input type="checkbox" [(ngModel)]="accepts"> J’ai lu et j’accepte les <a routerLink="/legal/cgv">CGV</a> et les informations concernant la <a routerLink="/legal/retractation">rétractation</a>.</label>
-<button class="btn btn-rose wide" [disabled]="!accepts||busy" (click)="order()">Envoyer ma demande de commande</button>
-<p class="feedback">{{message}}</p>
-<small>Un compte client est nécessaire. Aucun paiement n’est débité sur ce site.</small>
-</div>
-</div>
+<main class="container inner cart-page">
+  <header class="cart-heading">
+    <span class="eyebrow">Vos jolies trouvailles</span>
+    <h1>Mon <i>panier</i></h1>
+    <p>Votre sélection de créations, imaginées avec amour et préparées à la demande.</p>
+  </header>
+
+  <section *ngIf="!store.cart().length" class="cart-empty" aria-label="Panier vide">
+    <span class="cart-empty__icon" aria-hidden="true">♡</span>
+    <h2>Votre panier attend ses premières créations</h2>
+    <p>Découvrez les petites attentions faites à la main par Amy.</p>
+    <a class="btn btn-rose" routerLink="/boutique">Parcourir la boutique</a>
+  </section>
+
+  <div *ngIf="store.cart().length" class="checkout-grid">
+    <section class="cart-items" aria-label="Les créations de votre panier">
+      <article class="cart-item" *ngFor="let l of store.cart(); index as i">
+        <figure class="cart-item__photo">
+          <img [src]="lineImage(l.options,l.product.imagePath)" [alt]="l.product.name" loading="lazy">
+        </figure>
+        <div class="cart-item__info">
+          <h2>{{l.product.name}}</h2>
+          <p>{{labels(l.options)}}</p>
+          <strong>{{(l.product.priceCents+extra(l.options))/100 | currency:'EUR'}}</strong>
+        </div>
+        <button type="button" class="cart-item__remove" (click)="store.remove(i)" [attr.aria-label]="'Retirer ' + l.product.name + ' du panier'" title="Retirer du panier">×</button>
+      </article>
+    </section>
+
+    <aside class="summary" aria-labelledby="order-summary-title">
+      <header class="summary__header">
+        <span class="summary__eyebrow">Votre sélection</span>
+        <h2 id="order-summary-title">Votre demande</h2>
+      </header>
+      <div class="sum-line">
+        <span>Total estimé</span>
+        <strong>{{store.total()/100 | currency:'EUR'}}</strong>
+      </div>
+      <p class="summary__notice">Chaque création est fabriquée sur demande. Le prix définitif, les options et les modalités de remise seront confirmés après échange avec Amy.</p>
+      <form class="checkout-form" (ngSubmit)="order()">
+        <div class="checkout-field">
+          <label for="cart-message">Un petit mot pour Amy <span class="optional">(facultatif)</span></label>
+          <textarea id="cart-message" name="note" rows="4" [(ngModel)]="note" placeholder="Couleurs, occasion, souhaits particuliers…"></textarea>
+        </div>
+        <div class="consent-row">
+          <input id="cart-accepts" name="accepts" type="checkbox" [(ngModel)]="accepts" required aria-describedby="cart-consent-text">
+          <div id="cart-consent-text" class="consent-row__text">
+            <label for="cart-accepts">J'ai lu et j'accepte les conditions applicables à ma demande, notamment les</label>
+            <a routerLink="/legal/cgv">CGV</a> et les informations sur la <a routerLink="/legal/retractation">rétractation</a>.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-rose wide checkout-form__submit" [disabled]="!accepts || busy">{{busy ? 'Envoi en cours…' : 'Envoyer ma demande de commande'}}</button>
+        <p class="feedback" *ngIf="message" role="status" aria-live="polite">{{message}}</p>
+      </form>
+      <p class="summary__reassurance">♡ Un compte client est nécessaire. Aucun paiement n'est débité sur ce site.</p>
+    </aside>
+  </div>
 </main>

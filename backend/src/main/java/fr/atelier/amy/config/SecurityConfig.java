@@ -18,15 +18,13 @@ public class SecurityConfig {
     private boolean secureCookies;
 
     @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12);
-    }
+    PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder(12);}
 
     @Bean
     UserDetailsService userDetailsService(UserRepository repo) {
         return email -> repo.findByEmailIgnoreCase(email)
-                .map(u -> User.withUsername(u.email).password(u.passwordHash).roles(u.role).build())
-                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur inconnu"));
+            .map(u -> User.withUsername(u.email).password(u.passwordHash).roles(u.role).build())
+            .orElseThrow(() -> new UsernameNotFoundException("Utilisateur inconnu"));
     }
 
     @Bean
@@ -36,14 +34,14 @@ public class SecurityConfig {
         var handler = new CsrfTokenRequestAttributeHandler();
         handler.setCsrfRequestAttributeName(null);
         http.csrf(csrf -> csrf.csrfTokenRepository(csrfRepo).csrfTokenRequestHandler(handler))
-                .authorizeHttpRequests(a -> a
-                        .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories", "/api/csrf").permitAll()
-                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .formLogin(f -> f.disable()).httpBasic(b -> b.disable())
-                .logout(l -> l.logoutUrl("/api/auth/logout").deleteCookies("LPADA_SESSION").invalidateHttpSession(true))
-                .sessionManagement(s -> s.sessionFixation(f -> f.changeSessionId()));
+            .authorizeHttpRequests(a -> a
+                .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/categories", "/api/csrf", "/api/media/*").permitAll()
+                .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated())
+            .formLogin(f -> f.disable()).httpBasic(b -> b.disable())
+            .logout(l -> l.logoutUrl("/api/auth/logout").deleteCookies("LPADA_SESSION").invalidateHttpSession(true))
+            .sessionManagement(s -> s.sessionFixation(f -> f.changeSessionId()));
         return http.build();
     }
 }

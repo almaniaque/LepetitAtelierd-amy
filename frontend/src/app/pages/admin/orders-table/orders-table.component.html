@@ -1,0 +1,42 @@
+<section class="orders-panel" aria-labelledby="orders-heading">
+  <header class="panel-heading">
+    <div><span class="eyebrow">Suivi de l'atelier</span>
+      <h2 id="orders-heading">Les commandes</h2>
+    </div>
+    <button type="button" class="refresh-button" [disabled]="loading"
+      (click)="refresh.emit()">{{loading?'Chargement…':'↻ Actualiser'}}</button>
+  </header>
+  <p class="admin-alert" *ngIf="error" role="alert">{{error}}</p>
+  <div class="orders-table-wrap">
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th scope="col">Commande</th>
+          <th scope="col">Client</th>
+          <th scope="col">Montant</th>
+          <th scope="col">Avancement</th>
+          <th scope="col">Paiement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <th scope="row">#{{order.id}}</th>
+          <td>{{order.user?.email || 'Client'}}</td>
+          <td class="amount">{{order.totalCents/100 | currency:'EUR'}}</td>
+          <td><select class="form-select" [ngModel]="order.status" [disabled]="saving===order.id"
+              [attr.aria-label]="'État commande '+order.id"
+              (ngModelChange)="statusChange.emit({order:order,previous:order.status,value:$event})">
+              <option *ngFor="let status of statuses" [ngValue]="status.value">{{status.label}}</option>
+            </select></td>
+          <td><select class="form-select" [ngModel]="order.paymentStatus" [disabled]="saving===order.id"
+              [attr.aria-label]="'Paiement commande '+order.id"
+              (ngModelChange)="paymentChange.emit({order:order,previous:order.paymentStatus,value:$event})">
+              <option *ngFor="let payment of payments" [ngValue]="payment.value">{{payment.label}}</option>
+            </select></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="empty-orders" *ngIf="!orders.length&&!loading">Aucune commande pour le moment. Les nouvelles demandes
+    apparaîtront ici.</p>
+</section>

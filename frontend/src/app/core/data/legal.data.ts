@@ -1,18 +1,145 @@
-export const legal:Record<string,{title:string;sections:{heading:string;text:string}[]}>= {
- cgv:{title:'Conditions générales de vente',sections:[
- {heading:'1. Identité du vendeur',text:'Le Petit Atelier d’Amy — [NOM ET PRÉNOM DE L’EXPLOITANTE], [FORME JURIDIQUE], [SIREN/SIRET], [ADRESSE PROFESSIONNELLE], [EMAIL DE CONTACT], [TÉLÉPHONE]. Compléter avant publication.'},
- {heading:'2. Produits et fabrication',text:'Bougies décoratives, bouquets parfumés, fondants et créations artisanales fabriquées à la demande. Les photographies illustrent les produits : de petites variations artisanales peuvent exister. Les caractéristiques et options confirmées lors de la commande font foi.'},
- {heading:'3. Prix',text:'Les prix sont exprimés en euros TTC (ou préciser la franchise en base de TVA si elle s’applique). Les montants indiqués « à partir de » sont des prix d’appel ; toute personnalisation ou composition particulière fait l’objet d’une validation du prix final avant engagement contractuel.'},
- {heading:'4. Commande et confirmation',text:'L’envoi d’une demande depuis le panier ne constitue pas un paiement. L’atelier confirme la faisabilité, le prix définitif et le délai avant la conclusion de la vente. Une confirmation contractuelle et un récapitulatif doivent être remis au client sur support durable.'},
- {heading:'5. Paiement',text:'[À COMPLÉTER : moyens de paiement, échéances, acompte éventuel, conditions de remboursement]. Aucun paiement en ligne n’est intégré dans cette version du site.'},
- {heading:'6. Remise et livraison',text:'Remise en main propre à Toulouse selon les modalités convenues. [À COMPLÉTER : adresse ou point de rendez-vous, délai maximal convenu, éventuelles livraisons, frais et territoire desservi]. Ne pas promettre de livraison tant que ce service n’est pas proposé.'},
- {heading:'7. Rétractation',text:'Sauf exception légale, le consommateur dispose de 14 jours pour se rétracter après réception. Les biens confectionnés selon les spécifications du consommateur ou nettement personnalisés peuvent relever d’une exception légale. Une simple fabrication à la demande ou une sélection de couleur standard n’exclut pas automatiquement ce droit. Voir la page Rétractation et son formulaire.'},
- {heading:'8. Garanties légales',text:'Les garanties légales de conformité et des vices cachés s’appliquent dans les conditions prévues par le droit français, y compris lorsque le produit est personnalisé.'},
- {heading:'9. Réclamations et médiation',text:'Pour toute réclamation : [EMAIL À COMPLÉTER]. En cas de litige non résolu après réclamation écrite, le consommateur peut saisir gratuitement le médiateur de la consommation compétent : [NOM, ADRESSE ET SITE DU MÉDIATEUR CHOISI — OBLIGATOIRE AVANT MISE EN LIGNE].'},
- {heading:'10. Sécurité et usage',text:'Respecter les consignes de sécurité accompagnant les bougies et produits parfumés. Les informations de composition, allergènes et étiquetages réglementaires nécessaires doivent être transmises selon le produit.'}]},
- cgu:{title:'Conditions générales d’utilisation',sections:[{heading:'Objet',text:'Le site présente et permet de demander les créations du Petit Atelier d’Amy. Les contenus et photographies ne peuvent être réutilisés sans autorisation.'},{heading:'Comptes et accès',text:'Les utilisateurs doivent fournir des informations exactes et préserver la confidentialité de leurs identifiants. L’accès administrateur est réservé à l’exploitante.'},{heading:'Fonctionnement',text:'La disponibilité du service peut être temporairement interrompue pour maintenance. Les commandes existantes restent soumises aux CGV et aux droits légaux des consommateurs.'},{heading:'Responsabilité',text:'Les dispositions des présentes CGU ne limitent pas les droits légaux impératifs des consommateurs.'}]},
- mentions:{title:'Mentions légales',sections:[{heading:'Éditeur du site',text:'Le Petit Atelier d’Amy — [NOM PRÉNOM], [STATUT JURIDIQUE], [SIREN/SIRET], [ADRESSE POSTALE PROFESSIONNELLE], [EMAIL], [TÉLÉPHONE]. Toulouse, France.'},{heading:'Directrice de publication',text:'[NOM PRÉNOM À COMPLÉTER].'},{heading:'Hébergement',text:'[NOM DE L’HÉBERGEUR], [DÉNOMINATION], [ADRESSE], [NUMÉRO DE TÉLÉPHONE].'},{heading:'Propriété intellectuelle',text:'Les textes, photographies, graphismes et créations présentés sont protégés par les droits applicables. Leur reproduction sans autorisation est interdite.'},{heading:'Médiation de consommation',text:'[IDENTITÉ ET COORDONNÉES DU MÉDIATEUR DE CONSOMMATION CHOISI].'}]},
- confidentialite:{title:'Confidentialité et données personnelles',sections:[{heading:'Responsable de traitement',text:'[IDENTITÉ DE L’EXPLOITANTE ET CONTACT PRIVACY À COMPLÉTER].'},{heading:'Données collectées',text:'Nom, adresse email, mot de passe conservé sous forme de hachage, commandes, options de personnalisation et informations nécessaires au suivi. Ne jamais stocker de mot de passe en clair.'},{heading:'Finalités et bases légales',text:'Création et sécurisation des comptes, gestion des demandes et commandes (exécution contractuelle ou mesures précontractuelles), respect des obligations comptables et légales, prévention des abus (intérêt légitime selon le cas). Aucun usage marketing n’est activé sans base légale appropriée.'},{heading:'Destinataires et hébergement',text:'L’exploitante et ses prestataires techniques habilités, selon leurs missions. [HÉBERGEUR, SOUS-TRAITANTS ET TRANSFERTS HORS UE À PRÉCISER].'},{heading:'Durées de conservation',text:'[DURÉES PAR CATÉGORIE À DÉFINIR : comptes, demandes, pièces comptables, journaux techniques]. Appliquer les durées légales et supprimer/anonymiser les autres données à échéance.'},{heading:'Vos droits',text:'Droits d’accès, rectification, effacement dans les limites légales, opposition, limitation et portabilité selon le traitement. Pour les exercer : [EMAIL]. Réclamation possible auprès de la CNIL (cnil.fr).'}]},
- cookies:{title:'Cookies et traceurs',sections:[{heading:'Cookies techniques',text:'Le site utilise des cookies nécessaires au maintien de la session sécurisée et à la protection CSRF. Ils ne servent pas au suivi publicitaire.'},{heading:'Mesure d’audience et marketing',text:'Aucun traceur de mesure d’audience non exempté ou de publicité n’est inclus dans cette version. Si de tels outils sont ajoutés, une information et, le cas échéant, une gestion préalable du consentement seront mises en place.'}]},
- retractation:{title:'Rétractation et retours',sections:[{heading:'Votre droit',text:'Pour les ventes conclues à distance, le droit de rétractation de 14 jours à compter de la réception s’applique sauf exception prévue par la loi. La demande peut être envoyée par le formulaire de rétractation ci-dessous à [EMAIL DE CONTACT].'},{heading:'Produits personnalisés',text:'Les créations véritablement réalisées selon vos spécifications ou nettement personnalisées peuvent relever de l’exception prévue à l’article L221-28 du Code de la consommation. Cette exception doit être clairement précisée avant l’achat ; elle ne s’applique pas automatiquement à toutes les créations fabriquées à la commande.'},{heading:'Modèle de formulaire',text:'À l’attention de [NOM ET ADRESSE DU VENDEUR] : Je vous notifie par la présente ma rétractation du contrat portant sur le bien suivant : [DESCRIPTION]. Commandé le : [DATE]. Reçu le : [DATE]. Nom du consommateur : [NOM]. Adresse : [ADRESSE]. Date : [DATE]. Signature (si papier) : [SIGNATURE].'},{heading:'Exercer son droit en ligne',text:'Une fonctionnalité de rétractation en ligne gratuite doit être disponible pour les contrats éligibles conclus sur une interface en ligne. À implémenter et vérifier avant d’activer une conclusion de vente entièrement en ligne.'},{heading:'Retours et remboursement',text:'[ADRESSE DE RETOUR ET CONDITIONS À COMPLÉTER]. Les frais éventuels de retour et les modalités de remboursement doivent être portés à la connaissance du client avant la commande.'}]}
+export const legal: Record<string, {
+    title: string;
+    sections: {
+        heading: string;
+        text: string
+    }[]
+}> = {
+
+    cgv: {
+        title: 'Conditions générales de vente', sections: [
+            {
+                heading: '1. Identité du vendeur',
+                text: 'Le Petit Atelier d’Amy — [NOM ET PRÉNOM DE L’EXPLOITANTE], [FORME JURIDIQUE], [SIREN/SIRET], [ADRESSE PROFESSIONNELLE], [EMAIL DE CONTACT], [TÉLÉPHONE]. Compléter avant publication.'
+            },
+            {
+                heading: '2. Produits et fabrication',
+                text: 'Bougies décoratives, bouquets parfumés, fondants et créations artisanales fabriquées à la demande. Les photographies illustrent les produits : de petites variations artisanales peuvent exister. Les caractéristiques et options confirmées lors de la commande font foi.'
+            },
+            {
+                heading: '3. Prix',
+                text: 'Les prix sont exprimés en euros TTC (ou préciser la franchise en base de TVA si elle s’applique). Les montants indiqués « à partir de » sont des prix d’appel ; toute personnalisation ou composition particulière fait l’objet d’une validation du prix final avant engagement contractuel.'
+            },
+            {
+                heading: '4. Commande et confirmation',
+                text: 'L’envoi d’une demande depuis le panier ne constitue pas un paiement. L’atelier confirme la faisabilité, le prix définitif et le délai avant la conclusion de la vente. Une confirmation contractuelle et un récapitulatif doivent être remis au client sur support durable.'
+            },
+            {
+                heading: '5. Paiement',
+                text: '[À COMPLÉTER : moyens de paiement, échéances, acompte éventuel, conditions de remboursement]. Aucun paiement en ligne n’est intégré dans cette version du site.'
+            },
+            {
+                heading: '6. Remise et livraison',
+                text: 'Remise en main propre à Toulouse selon les modalités convenues. [À COMPLÉTER : adresse ou point de rendez-vous, délai maximal convenu, éventuelles livraisons, frais et territoire desservi]. Ne pas promettre de livraison tant que ce service n’est pas proposé.'
+            },
+            {
+                heading: '7. Rétractation',
+                text: 'Sauf exception légale, le consommateur dispose de 14 jours pour se rétracter après réception. Les biens confectionnés selon les spécifications du consommateur ou nettement personnalisés peuvent relever d’une exception légale. Une simple fabrication à la demande ou une sélection de couleur standard n’exclut pas automatiquement ce droit. Voir la page Rétractation et son formulaire.'
+            },
+            {
+                heading: '8. Garanties légales',
+                text: 'Les garanties légales de conformité et des vices cachés s’appliquent dans les conditions prévues par le droit français, y compris lorsque le produit est personnalisé.'
+            },
+            {
+                heading: '9. Réclamations et médiation',
+                text: 'Pour toute réclamation : [EMAIL À COMPLÉTER]. En cas de litige non résolu après réclamation écrite, le consommateur peut saisir gratuitement le médiateur de la consommation compétent : [NOM, ADRESSE ET SITE DU MÉDIATEUR CHOISI — OBLIGATOIRE AVANT MISE EN LIGNE].'
+            },
+            {
+                heading: '10. Sécurité et usage',
+                text: 'Respecter les consignes de sécurité accompagnant les bougies et produits parfumés. Les informations de composition, allergènes et étiquetages réglementaires nécessaires doivent être transmises selon le produit.'
+            }]
+    },
+    cgu: {
+        title: 'Conditions générales d’utilisation',
+        sections: [{
+            heading: 'Conception et développement',
+            text: 'Le site a été conçu et développé par NeoForge. Le Petit Atelier d’Amy reste l’éditeur du site, le vendeur des créations et l’interlocuteur des clients pour les commandes et l’exercice de leurs droits.'
+        }, {
+            heading: 'Objet',
+            text: 'Le site présente et permet de demander les créations du Petit Atelier d’Amy. Les contenus et photographies ne peuvent être réutilisés sans autorisation.'
+        }, {
+            heading: 'Comptes et accès',
+            text: 'Les utilisateurs doivent fournir des informations exactes et préserver la confidentialité de leurs identifiants. L’accès administrateur est réservé à l’exploitante.'
+        }, {
+            heading: 'Fonctionnement',
+            text: 'La disponibilité du service peut être temporairement interrompue pour maintenance. Les commandes existantes restent soumises aux CGV et aux droits légaux des consommateurs.'
+        }, {
+            heading: 'Responsabilité',
+            text: 'Les dispositions des présentes CGU ne limitent pas les droits légaux impératifs des consommateurs.'
+        }]
+    },
+    mentions: {
+        title: 'Mentions légales',
+        sections: [{
+            heading: 'Éditeur du site',
+            text: 'Le Petit Atelier d’Amy — [NOM PRÉNOM], [STATUT JURIDIQUE], [SIREN/SIRET], [ADRESSE POSTALE PROFESSIONNELLE], [EMAIL], [TÉLÉPHONE]. Toulouse, France.'
+        }, {
+            heading: 'Directrice de publication',
+            text: '[NOM PRÉNOM À COMPLÉTER].'
+        }, {
+            heading: 'Conception et développement du site',
+            text: 'Conception et développement technique : NeoForge. Cette mention de crédit technique ne remplace pas l’identification de l’éditeur ni celle de l’hébergeur.'
+        }, {
+            heading: 'Hébergement',
+            text: '[NOM DE L’HÉBERGEUR], [DÉNOMINATION], [ADRESSE], [NUMÉRO DE TÉLÉPHONE].'
+        }, {
+            heading: 'Propriété intellectuelle',
+            text: 'Les textes, photographies, graphismes et créations présentés sont protégés par les droits applicables. Leur reproduction sans autorisation est interdite.'
+        }, {
+            heading: 'Médiation de consommation',
+            text: '[IDENTITÉ ET COORDONNÉES DU MÉDIATEUR DE CONSOMMATION CHOISI].'
+        }]
+    },
+    confidentialite: {
+        title: 'Confidentialité et données personnelles',
+        sections: [{
+            heading: 'Responsable de traitement',
+            text: '[IDENTITÉ DE L’EXPLOITANTE ET CONTACT PRIVACY À COMPLÉTER].'
+        }, {
+            heading: 'Données collectées',
+            text: 'Nom, adresse email, mot de passe conservé sous forme de hachage, commandes, options de personnalisation et informations nécessaires au suivi. Ne jamais stocker de mot de passe en clair.'
+        }, {
+            heading: 'Finalités et bases légales',
+            text: 'Création et sécurisation des comptes, gestion des demandes et commandes (exécution contractuelle ou mesures précontractuelles), respect des obligations comptables et légales, prévention des abus (intérêt légitime selon le cas). Aucun usage marketing n’est activé sans base légale appropriée.'
+        }, {
+            heading: 'Destinataires et hébergement',
+            text: 'L’exploitante et ses prestataires techniques habilités, selon leurs missions. [HÉBERGEUR, SOUS-TRAITANTS ET TRANSFERTS HORS UE À PRÉCISER].'
+        }, {
+            heading: 'Durées de conservation',
+            text: '[DURÉES PAR CATÉGORIE À DÉFINIR : comptes, demandes, pièces comptables, journaux techniques]. Appliquer les durées légales et supprimer/anonymiser les autres données à échéance.'
+        }, {
+            heading: 'Vos droits',
+            text: 'Droits d’accès, rectification, effacement dans les limites légales, opposition, limitation et portabilité selon le traitement. Pour les exercer : [EMAIL]. Réclamation possible auprès de la CNIL (cnil.fr).'
+        }]
+    },
+    cookies: {
+        title: 'Cookies et traceurs',
+        sections: [{
+            heading: 'Cookies techniques',
+            text: 'Le site utilise des cookies nécessaires au maintien de la session sécurisée et à la protection CSRF. Ils ne servent pas au suivi publicitaire.'
+        }, {
+            heading: 'Mesure d’audience et marketing',
+            text: 'Aucun traceur de mesure d’audience non exempté ou de publicité n’est inclus dans cette version. Si de tels outils sont ajoutés, une information et, le cas échéant, une gestion préalable du consentement seront mises en place.'
+        }]
+    },
+    retractation: {
+        title: 'Rétractation et retours',
+        sections: [{
+            heading: 'Votre droit',
+            text: 'Pour les ventes conclues à distance, le droit de rétractation de 14 jours à compter de la réception s’applique sauf exception prévue par la loi. La demande peut être envoyée par le formulaire de rétractation ci-dessous à [EMAIL DE CONTACT].'
+        }, {
+            heading: 'Produits personnalisés',
+            text: 'Les créations véritablement réalisées selon vos spécifications ou nettement personnalisées peuvent relever de l’exception prévue à l’article L221-28 du Code de la consommation. Cette exception doit être clairement précisée avant l’achat ; elle ne s’applique pas automatiquement à toutes les créations fabriquées à la commande.'
+        }, {
+            heading: 'Modèle de formulaire',
+            text: 'À l’attention de [NOM ET ADRESSE DU VENDEUR] : Je vous notifie par la présente ma rétractation du contrat portant sur le bien suivant : [DESCRIPTION]. Commandé le : [DATE]. Reçu le : [DATE]. Nom du consommateur : [NOM]. Adresse : [ADRESSE]. Date : [DATE]. Signature (si papier) : [SIGNATURE].'
+        },
+        {
+            heading: 'Exercer son droit en ligne',
+            text: 'Une fonctionnalité de rétractation en ligne gratuite doit être disponible pour les contrats éligibles conclus sur une interface en ligne. À implémenter et vérifier avant d’activer une conclusion de vente entièrement en ligne.'
+        }, {
+            heading: 'Retours et remboursement',
+            text: '[ADRESSE DE RETOUR ET CONDITIONS À COMPLÉTER]. Les frais éventuels de retour et les modalités de remboursement doivent être portés à la connaissance du client avant la commande.'
+        }]
+    }
 };

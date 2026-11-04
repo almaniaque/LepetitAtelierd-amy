@@ -1,0 +1,20 @@
+.admin-navigation {
+    display: flex;
+    gap: 22px;
+    border-bottom: 1px solid var(--color-border);
+    margin: 24px 0 34px;
+    flex-wrap: wrap
+}
+
+.admin-navigation a {
+    padding: 12px 0;
+    color: var(--color-muted);
+    font-size: 14px;
+    text-decoration: none
+}
+
+.admin-navigation a.is-active {
+    color: var(--color-ink);
+    border-bottom: 2px solid var(--color-rose-strong);
+    font-weight: 600
+}

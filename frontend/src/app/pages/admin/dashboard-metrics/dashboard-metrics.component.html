@@ -1,0 +1,33 @@
+<section class="dashboard-kpis" aria-label="Indicateurs clés">
+  <article class="kpi kpi-primary">
+    <span>Montant encaissé</span>
+    <strong>{{summary.revenueCents/100 |
+      currency:'EUR'}}</strong>
+    <small>Paiements marqués encaissés</small>
+  </article>
+  <article class="kpi">
+    <span>Commandes</span>
+    <strong>{{summary.orders}}</strong>
+    <small>Toutes périodes</small>
+  </article>
+  <article class="kpi">
+    <span>En attente</span>
+    <strong>{{summary.pending}}</strong>
+    <small>À traiter</small>
+  </article>
+  <article class="kpi">
+    <span>En fabrication</span>
+    <strong>{{summary.inProgress}}</strong>
+    <small>En cours</small>
+  </article>
+  <article class="kpi">
+    <span>Livrées</span>
+    <strong>{{summary.delivered}}</strong>
+    <small>Terminées</small>
+  </article>
+  <article class="kpi">
+    <span>Livrées</span>
+    <strong>{{summary.delivered}}</strong>
+    <small>Terminées</small>
+  </article>
+</section>

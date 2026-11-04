@@ -1,0 +1,13 @@
+<header class="site-header container">
+  <a routerLink="/" class="brand" aria-label="Le Petit Atelier d'Amy, accueil">LE PETIT ATELIER <em>d’Amy</em></a>
+  <nav class="mainnav" aria-label="Navigation principale">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Accueil</a>
+    <a routerLink="/boutique" routerLinkActive="active">La boutique</a>
+    <a routerLink="/mon-compte" routerLinkActive="active">Mon compte</a>
+    @if (store.user()?.role === 'ROLE_ADMIN') {
+    <a routerLink="/administration" routerLinkActive="active">Atelier pro</a>
+    }
+  </nav>
+  <a routerLink="/panier" class="cart-link" routerLinkActive="active">Mon panier <span
+      aria-label="Articles dans le panier">{{store.cart().length}}</span></a>
+</header>

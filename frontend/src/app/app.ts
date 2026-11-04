@@ -1,15 +1,26 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Store } from './core/services/store.service';
+import { AnnouncementComponent } from './shared/announcement/announcement.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterLink, RouterOutlet],
+    imports: [
+        RouterOutlet,
+        AnnouncementComponent,
+        HeaderComponent,
+        FooterComponent
+    ],
     templateUrl: './app.html',
     styleUrl: './app.css'
 })
 export class AppComponent implements OnInit {
-    store = inject(Store);
-    ngOnInit() { this.store.init(); }
-}
 
+    private readonly store = inject(Store);
+    ngOnInit(): void {
+        this.store.init();
+    }
+}

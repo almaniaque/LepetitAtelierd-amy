@@ -1,53 +1,79 @@
-<section class="page-head">
-<div class="container">
-<span class="eyebrow">Un univers tendre & parfumé</span>
-<h1>La <i>boutique</i>
-</h1>
-<p>Toutes les créations sont réalisées à la demande. Les couleurs et options proposées varient selon les modèles.</p>
-</div>
-</section>
-<main class="container catalog">
-<div class="filters">
-<button [class.selected]="category()===''" (click)="category.set('')">Tout voir</button>
-<button *ngFor="let c of store.categories()" [class.selected]="category()===c.slug" (click)="category.set(c.slug)">{{c.name}}</button>
-</div>
-<div class="product-grid">
-<article class="product-card" *ngFor="let p of visible()">
-<div class="product-photo">
-<img [src]="previewImage(p)" [alt]="p.name + (selectedColor(p) ? ' — ' + selectedColor(p) : '')" loading="lazy">
-<span>À la demande</span>
-</div>
-<div class="product-info">
-<small>{{p.category.name}}</small>
-<h3>{{p.name}}</h3>
-<p>{{p.description}}</p>
-<b>{{p.priceCents/100 | currency:'EUR'}}</b>
-<div *ngIf="p.options.length">
-<div *ngFor="let kind of kinds(p)">
-<div *ngIf="kind === 'Couleur'; else selectionClassique" class="color-picker">
-<span class="color-picker-title">Couleur <strong>{{selectedColor(p) || 'À choisir'}}</strong>
-</span>
-<div class="color-options" role="group" [attr.aria-label]="'Choisir la couleur pour ' + p.name">
-<button *ngFor="let o of options(p,kind)" type="button" class="color-option" [class.is-selected]="selected(p.id,kind)===o.id" [attr.aria-label]="o.label" [attr.aria-pressed]="selected(p.id,kind)===o.id" [title]="o.label" (click)="setOption(p.id,kind,o.id)">
-<span class="color-dot" [style.background-color]="colorHex(o.label)">
-</span>
-<span class="color-option-name">{{o.label}}</span>
-</button>
-</div>
-</div>
-<ng-template #selectionClassique>
-<label>{{kind}}<select [ngModel]="selected(p.id,kind)" (ngModelChange)="setOption(p.id,kind,$event)">
-<option [ngValue]="null">À choisir</option>
-<option *ngFor="let o of options(p,kind)" [ngValue]="o.id">{{o.label}}{{o.extraCents?' (+'+(o.extraCents/100)+' €)':''}}</option>
-</select>
-</label>
-</ng-template>
-</div>
-</div>
-<button class="btn btn-rose wide" (click)="add(p)">Ajouter au panier ♡</button>
-</div>
-</article>
-</div>
-<p class="empty" *ngIf="!visible().length">Cette catégorie sera enrichie prochainement. Contactez l’atelier pour une demande particulière.</p>
-<p class="feedback">{{message()}}</p>
+<header class="catalog-hero" aria-labelledby="catalog-hero-title">
+  <div class="container catalog-hero__layout">
+    <div class="catalog-hero__content">
+      <p class="catalog-hero__eyebrow"><span aria-hidden="true" class="catalog-hero__line"></span> Le petit atelier d'Amy <span aria-hidden="true" class="catalog-hero__line"></span></p>
+      <h1 id="catalog-hero-title">Des créations<br><em>qui ont une âme.</em></h1>
+      <p class="catalog-hero__description">
+        Oursons, bouquets et douceurs parfumées : des pièces imaginées avec soin,
+        réalisées à la demande, et pensées pour offrir une attention unique.
+      </p>
+      <div class="catalog-hero__benefits" aria-label="Les engagements de l'atelier">
+        <span><span class="catalog-hero__benefit-icon" aria-hidden="true">✳</span> Fait à la main</span>
+        <span><span class="catalog-hero__benefit-icon" aria-hidden="true">♡</span> À la demande</span>
+        <span><span class="catalog-hero__benefit-icon" aria-hidden="true">✧</span> Avec amour</span>
+      </div>
+      <a class="catalog-hero__link" href="#catalogue-produits">Découvrir les créations <span aria-hidden="true">↗</span></a>
+    </div>
+    <aside class="catalog-hero__art" aria-label="L'univers de l'atelier">
+      <div class="catalog-hero__arch">
+        <span class="catalog-hero__art-sun" aria-hidden="true"></span>
+        <span class="catalog-hero__art-flower" aria-hidden="true">✿</span>
+        <span class="catalog-hero__art-script">fait avec<br><em>amour</em></span>
+        <span class="catalog-hero__art-stem" aria-hidden="true"></span>
+      </div>
+      <div class="catalog-hero__badge" aria-label="Créations artisanales, fabriquées avec soin">
+        <span>Créations</span><strong>artisanales</strong><span>♡</span>
+      </div>
+      <span class="catalog-hero__art-note">Un petit geste, une grande émotion.</span>
+    </aside>
+  </div>
+  <div class="catalog-hero__footer" aria-hidden="true"><span>Petites attentions</span><span>✦</span><span>Grandes émotions</span></div>
+</header>
+
+<main class="container catalog" id="catalogue-produits">
+  <nav class="filters" aria-label="Filtrer les créations par catégorie">
+    <button type="button" [class.selected]="category()===''" [attr.aria-pressed]="category()===''" (click)="category.set('')">Tout voir</button>
+    <button type="button" *ngFor="let c of store.categories()" [class.selected]="category()===c.slug" [attr.aria-pressed]="category()===c.slug" (click)="category.set(c.slug)">{{c.name}}</button>
+  </nav>
+
+  <section class="catalog-results" aria-label="Créations disponibles à la commande">
+    <div class="product-grid">
+      <article class="product-card" *ngFor="let p of visible()">
+        <figure class="product-photo">
+          <img [src]="previewImage(p)" [alt]="p.name + (selectedColor(p) ? ' — ' + selectedColor(p) : '')" loading="lazy">
+          <figcaption>À la demande</figcaption>
+        </figure>
+        <div class="product-info">
+          <small>{{p.category.name}}</small>
+          <h2>{{p.name}}</h2>
+          <p>{{p.description}}</p>
+          <b>{{p.priceCents/100 | currency:'EUR'}}</b>
+          <div *ngIf="p.options.length">
+            <div *ngFor="let kind of kinds(p)">
+              <div *ngIf="kind === 'Couleur'; else selectionClassique" class="color-picker">
+                <span class="color-picker-title">Couleur <strong>{{selectedColor(p) || 'À choisir'}}</strong></span>
+                <div class="color-options" role="group" [attr.aria-label]="'Choisir la couleur pour ' + p.name">
+                  <button *ngFor="let o of options(p,kind)" type="button" class="color-option" [class.is-selected]="selected(p.id,kind)===o.id" [attr.aria-label]="o.label" [attr.aria-pressed]="selected(p.id,kind)===o.id" [title]="o.label" (click)="setOption(p.id,kind,o.id)">
+                    <span class="color-dot" [style.background-color]="colorHex(o.label)"></span>
+                    <span class="color-option-name">{{o.label}}</span>
+                  </button>
+                </div>
+              </div>
+              <ng-template #selectionClassique>
+                <label>{{kind}}
+                  <select [ngModel]="selected(p.id,kind)" (ngModelChange)="setOption(p.id,kind,$event)">
+                    <option [ngValue]="null">À choisir</option>
+                    <option *ngFor="let o of options(p,kind)" [ngValue]="o.id">{{o.label}}{{o.extraCents?' (+'+(o.extraCents/100)+' €)':''}}</option>
+                  </select>
+                </label>
+              </ng-template>
+            </div>
+          </div>
+          <button type="button" class="btn btn-rose wide" (click)="add(p)">Ajouter au panier ♡</button>
+        </div>
+      </article>
+    </div>
+    <p class="empty" *ngIf="!visible().length">Cette catégorie sera enrichie prochainement. Contactez l’atelier pour une demande particulière.</p>
+    <p class="feedback" role="status" aria-live="polite">{{message()}}</p>
+  </section>
 </main>

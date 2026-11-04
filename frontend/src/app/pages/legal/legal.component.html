@@ -1,10 +1,11 @@
 <main class="container inner legal">
-<span class="eyebrow">Informations & transparence</span>
-<h1>{{doc.title}}</h1>
-<div class="legal-warning">Documents de travail : les champs entre crochets doivent être renseignés et les textes validés avant toute mise en production commerciale.</div>
-<section *ngFor="let s of doc.sections">
-<h2>{{s.heading}}</h2>
-<p>{{s.text}}</p>
-</section>
-<a routerLink="/" class="link-button">← Revenir à l’accueil</a>
+    <span class="eyebrow">Informations & transparence</span>
+    <h1>{{doc.title}}</h1>
+    <aside class="legal-warning" aria-label="Avertissement juridique">Documents de travail : les champs entre crochets
+        doivent être renseignés et les textes validés avant toute mise en production commerciale.</aside>
+    <section *ngFor="let s of doc.sections" aria-label="Section du document juridique">
+        <h2>{{s.heading}}</h2>
+        <p>{{s.text}}</p>
+    </section>
+    <a routerLink="/" class="link-button">← Revenir à l’accueil</a>
 </main>

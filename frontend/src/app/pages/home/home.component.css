@@ -20,3 +20,5 @@
 .message-band h2{margin:10px auto;max-width:700px}
 .message-band p{color:var(--color-muted)}
 .message-band a{text-decoration:underline;text-underline-offset:7px}
+
+.hero-photo{margin:0}
